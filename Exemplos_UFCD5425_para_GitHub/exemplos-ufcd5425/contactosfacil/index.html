@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContactosFácil</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <header class="cabecalho">
+    <h1>📇 ContactosFácil</h1>
+    <p class="subtitulo">A sua lista de contactos simples — guardada neste computador</p>
+  </header>
+
+  <main class="conteudo">
+
+    <section class="cartao">
+      <h2>Adicionar contacto</h2>
+
+      <form id="formulario" class="formulario">
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" placeholder="Ex.: Ana Silva">
+        </div>
+
+        <div class="campo">
+          <label for="telefone">Telefone</label>
+          <input type="text" id="telefone" placeholder="Ex.: 912 345 678">
+        </div>
+
+        <div class="campo">
+          <label for="email">Email</label>
+          <input type="text" id="email" placeholder="Ex.: ana@email.com">
+        </div>
+
+        <button type="submit" id="botaoAdicionar">Adicionar contacto</button>
+      </form>
+
+      <p id="mensagemErro" class="mensagem-erro" hidden></p>
+    </section>
+
+    <section class="cartao">
+      <div class="cabecalho-lista">
+        <h2>Os meus contactos</h2>
+        <span id="contador" class="contador">0 contactos</span>
+      </div>
+
+      <p id="listaVazia" class="lista-vazia">
+        Ainda não tem nenhum contacto guardado. Use o formulário acima para adicionar o primeiro.
+      </p>
+
+      <ul id="lista" class="lista"></ul>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>ContactosFácil · Projeto de exemplo — UFCD 5425 · Feito com HTML, CSS e JavaScript</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

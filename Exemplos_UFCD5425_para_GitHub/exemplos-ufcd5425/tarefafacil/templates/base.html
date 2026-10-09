@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}TarefaFácil{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+</head>
+<body>
+
+  {% if session.get('id_utilizador') %}
+  <nav class="barra-navegacao">
+    <a href="{{ url_for('rotas.tarefas') }}" class="marca">📋 TarefaFácil</a>
+    <div class="ligacoes-nav">
+      <a href="{{ url_for('rotas.tarefas') }}" class="{{ 'ativo' if request.endpoint == 'rotas.tarefas' else '' }}">Tarefas</a>
+      <a href="{{ url_for('rotas.calendario') }}" class="{{ 'ativo' if request.endpoint == 'rotas.calendario' else '' }}">Calendário</a>
+    </div>
+    <div class="utilizador-atual">
+      <span>Olá, {{ session.get('nome_utilizador') }}</span>
+      <a href="{{ url_for('rotas.logout') }}" class="ligacao-sair">Sair</a>
+    </div>
+  </nav>
+  {% endif %}
+
+  <main class="conteudo-principal">
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+      {% if mensagens %}
+        <div class="mensagens-flash">
+          {% for categoria, mensagem in mensagens %}
+            <div class="mensagem mensagem-{{ categoria }}">{{ mensagem }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block conteudo %}{% endblock %}
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

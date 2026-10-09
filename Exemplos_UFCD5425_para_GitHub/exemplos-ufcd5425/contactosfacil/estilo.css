@@ -1,0 +1,212 @@
+/* ContactosFácil — estilos
+   Paleta consistente com os restantes materiais da UFCD 5425 */
+
+:root {
+  --navy: #0f2c3f;
+  --teal: #1b98a0;
+  --amber: #f2a65a;
+  --ink: #16232b;
+  --muted: #5a6b75;
+  --line: #dce4e7;
+  --offwhite: #f4f7f8;
+  --danger: #c0392b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Calibri, Arial, sans-serif;
+  background: var(--offwhite);
+  color: var(--ink);
+}
+
+.cabecalho {
+  background: var(--navy);
+  color: #ffffff;
+  padding: 40px 24px 32px;
+  text-align: center;
+}
+
+.cabecalho h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.subtitulo {
+  margin: 0;
+  color: #cfe3e8;
+  font-size: 15px;
+}
+
+.conteudo {
+  max-width: 640px;
+  margin: -20px auto 40px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cartao {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(15, 44, 63, 0.06);
+}
+
+.cartao h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: var(--navy);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.campo input {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(27, 152, 160, 0.15);
+}
+
+button#botaoAdicionar {
+  margin-top: 4px;
+  padding: 12px 16px;
+  background: var(--teal);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button#botaoAdicionar:hover {
+  background: #16838b;
+}
+
+.mensagem-erro {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  background: #fdecea;
+  color: var(--danger);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.cabecalho-lista {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cabecalho-lista h2 {
+  margin: 0;
+}
+
+.contador {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--offwhite);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.lista-vazia {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contacto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--offwhite);
+}
+
+.contacto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.contacto-nome {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.contacto-detalhe {
+  font-size: 13px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.botao-apagar {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.botao-apagar:hover {
+  background: var(--danger);
+  color: #ffffff;
+}
+
+.rodape {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 0 20px 32px;
+}

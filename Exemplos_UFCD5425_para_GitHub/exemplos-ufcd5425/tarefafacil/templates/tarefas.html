@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block titulo %}As minhas tarefas · TarefaFácil{% endblock %}
+{% block conteudo %}
+
+<section class="cartao">
+  <h2>Adicionar tarefa</h2>
+  <form method="post" action="{{ url_for('rotas.criar_tarefa') }}" class="formulario formulario-linha">
+    <div class="campo campo-crescer">
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" placeholder="Ex.: Preparar apresentação final" required autofocus>
+    </div>
+    <div class="campo">
+      <label for="prazo">Prazo</label>
+      <input type="date" id="prazo" name="prazo">
+    </div>
+    <button type="submit" class="botao botao-principal">Adicionar</button>
+  </form>
+</section>
+
+<section class="cartao">
+  <div class="cabecalho-cartao">
+    <h2>As minhas tarefas</h2>
+    <span class="contador">{{ concluidas }} de {{ total }} concluídas</span>
+  </div>
+
+  {% if not tarefas_com_estado %}
+    <p class="estado-vazio">Ainda não tem tarefas. Adicione a primeira no formulário acima.</p>
+  {% else %}
+    <ul class="lista-tarefas">
+      {% for item in tarefas_com_estado %}
+      {% set tarefa = item.tarefa %}
+      <li class="tarefa {{ 'tarefa-concluida' if tarefa.estado == 'concluída' else '' }}">
+        <form method="post" action="{{ url_for('rotas.concluir_tarefa', id_tarefa=tarefa.id) }}" class="forma-concluir">
+          <button type="submit" class="caixa-concluir" aria-label="Marcar como concluída" title="Marcar como concluída">
+            {% if tarefa.estado == 'concluída' %}✓{% endif %}
+          </button>
+        </form>
+
+        <div class="tarefa-info">
+          <span class="tarefa-titulo">{{ tarefa.titulo }}</span>
+          <span class="tarefa-meta">
+            {% if tarefa.prazo %}
+              Prazo: {{ tarefa.prazo }}
+              {% if item.atrasada %}<span class="etiqueta etiqueta-atrasada">Atrasada</span>{% endif %}
+            {% else %}
+              Sem prazo definido
+            {% endif %}
+          </span>
+        </div>
+
+        <div class="tarefa-acoes">
+          <a href="{{ url_for('rotas.editar_tarefa', id_tarefa=tarefa.id) }}" class="botao botao-secundario">Editar</a>
+          <form method="post" action="{{ url_for('rotas.apagar_tarefa', id_tarefa=tarefa.id) }}" class="forma-apagar-inline" data-confirmar="Eliminar esta tarefa?">
+            <button type="submit" class="botao botao-perigo">Eliminar</button>
+          </form>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+
+{% endblock %}

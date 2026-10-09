@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block titulo %}Iniciar sessão · TarefaFácil{% endblock %}
+{% block conteudo %}
+<div class="pagina-autenticacao">
+  <div class="cartao-autenticacao">
+    <h1 class="titulo-app">📋 TarefaFácil</h1>
+    <p class="subtitulo-autenticacao">Inicie sessão para ver as suas tarefas e eventos</p>
+
+    <form method="post" class="formulario">
+      <div class="campo">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required autofocus>
+      </div>
+      <div class="campo">
+        <label for="password">Palavra-passe</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit" class="botao botao-principal">Entrar</button>
+    </form>
+
+    <p class="ligacao-alternativa">
+      Ainda não tem conta? <a href="{{ url_for('rotas.registo') }}">Criar conta</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Editar tarefa · TarefaFácil{% endblock %}
+{% block conteudo %}
+
+<section class="cartao cartao-estreito">
+  <h2>Editar tarefa</h2>
+  <form method="post" class="formulario">
+    <div class="campo">
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" value="{{ tarefa.titulo }}" required autofocus>
+    </div>
+    <div class="campo">
+      <label for="prazo">Prazo</label>
+      <input type="date" id="prazo" name="prazo" value="{{ tarefa.prazo or '' }}">
+    </div>
+    <div class="campo">
+      <label for="estado">Estado</label>
+      <select id="estado" name="estado">
+        <option value="pendente" {{ 'selected' if tarefa.estado == 'pendente' else '' }}>Pendente</option>
+        <option value="concluída" {{ 'selected' if tarefa.estado == 'concluída' else '' }}>Concluída</option>
+      </select>
+    </div>
+    <div class="acoes-formulario">
+      <a href="{{ url_for('rotas.tarefas') }}" class="botao botao-secundario">Cancelar</a>
+      <button type="submit" class="botao botao-principal">Guardar alterações</button>
+    </div>
+  </form>
+</section>
+
+{% endblock %}

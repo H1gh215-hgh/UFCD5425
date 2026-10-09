@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block titulo %}Calendário · TarefaFácil{% endblock %}
+{% block conteudo %}
+
+<section class="cartao">
+  <div class="cabecalho-cartao">
+    <h2>Calendário semanal</h2>
+    <div class="navegacao-semana">
+      <a href="{{ url_for('rotas.calendario', semana=deslocamento - 1) }}" class="botao botao-secundario">&larr; Semana anterior</a>
+      <a href="{{ url_for('rotas.calendario', semana=0) }}" class="botao botao-secundario">Hoje</a>
+      <a href="{{ url_for('rotas.calendario', semana=deslocamento + 1) }}" class="botao botao-secundario">Semana seguinte &rarr;</a>
+    </div>
+  </div>
+
+  <div class="grelha-semana">
+    {% for dia in dias %}
+    <div class="dia-semana {{ 'dia-hoje' if dia.hoje else '' }}">
+      <div class="cabecalho-dia">
+        <span class="nome-dia">{{ dia.nome }}</span>
+        <span class="data-dia">{{ dia.data }}</span>
+      </div>
+      <ul class="lista-eventos">
+        {% for evento in dia.eventos %}
+        <li class="evento">
+          <span class="evento-hora">{{ evento.hora }}</span>
+          <span class="evento-titulo">{{ evento.titulo }}</span>
+          <form method="post" action="{{ url_for('rotas.apagar_evento', id_evento=evento.id) }}" class="forma-apagar-inline" data-confirmar="Eliminar este evento?">
+            <input type="hidden" name="semana" value="{{ deslocamento }}">
+            <button type="submit" class="botao-apagar-evento" aria-label="Eliminar evento" title="Eliminar evento">&times;</button>
+          </form>
+        </li>
+        {% else %}
+        <li class="sem-eventos">Sem eventos</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cartao">
+  <h2>Adicionar evento</h2>
+  <form method="post" action="{{ url_for('rotas.criar_evento') }}" class="formulario formulario-linha">
+    <input type="hidden" name="semana" value="{{ deslocamento }}">
+    <div class="campo campo-crescer">
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" placeholder="Ex.: Reunião de grupo" required>
+    </div>
+    <div class="campo">
+      <label for="data">Data</label>
+      <input type="date" id="data" name="data" required>
+    </div>
+    <div class="campo">
+      <label for="hora">Hora</label>
+      <input type="time" id="hora" name="hora" required>
+    </div>
+    <button type="submit" class="botao botao-principal">Adicionar</button>
+  </form>
+</section>
+
+{% endblock %}
